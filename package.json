@@ -23,5 +23,6 @@
     "botbuilder": "^0.6.5",
     "express": "^4.10.2",
     "restify": "^4.0.4"
+    "socket.io": "^1.4.8"
   }
 }

@@ -1,16 +1,29 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 
+var app = express();
+var io = require('socket.io')(http);
+
+// get message from
+app.get('/', function(req, res){
+ res.sendFile(__dirname + '/index.html');
+});
+io.on('connection', function(socket){
+ socket.on('chat message', function(msg){
+ io.emit('chat message', msg);
+ });
+});
+
 // Get secrets from server environment
-var botConnectorOptions = { 
-    appId: process.env.BOTFRAMEWORK_APPID, 
-    appSecret: process.env.BOTFRAMEWORK_APPSECRET 
+var botConnectorOptions = {
+    appId: process.env.BOTFRAMEWORK_APPID,
+    appSecret: process.env.BOTFRAMEWORK_APPSECRET
 };
 
 // Create bot
 var bot = new builder.BotConnectorBot(botConnectorOptions);
 bot.add('/', function (session) {
-    
+
     //respond with user's message
     session.send("You said " + session.message.text);
 });
@@ -28,5 +41,5 @@ server.get(/.*/, restify.serveStatic({
 }));
 
 server.listen(process.env.port || 3978, function () {
-    console.log('%s listening to %s', server.name, server.url); 
+    console.log('%s listening to %s', server.name, server.url);
 });
