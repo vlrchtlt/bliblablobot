@@ -1,19 +1,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 
-var app = express();
-var io = require('socket.io')(http);
-
-// get message from
-app.get('/', function(req, res){
- res.sendFile(__dirname + '/index.html');
-});
-io.on('connection', function(socket){
- socket.on('chat message', function(msg){
- io.emit('chat message', msg);
- });
-});
-
 // Get secrets from server environment
 var botConnectorOptions = {
     appId: process.env.BOTFRAMEWORK_APPID,
@@ -39,6 +26,20 @@ server.get(/.*/, restify.serveStatic({
 	'directory': '.',
 	'default': 'index.html'
 }));
+
+//tentative de fusion entre webchat et echobot
+var app = express();
+var io = require('socket.io')(server);
+
+// get message from
+app.get('/', function(req, res){
+ res.sendFile(__dirname + '/index.html');
+});
+io.on('connection', function(socket){
+ socket.on('chat message', function(msg){
+ io.emit('chat message', msg);
+ });
+});
 
 server.listen(process.env.port || 3978, function () {
     console.log('%s listening to %s', server.name, server.url);
