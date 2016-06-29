@@ -1,26 +1,27 @@
 {
-  "name": "echobot",
+  "name": "bliblabloBOT",
   "version": "1.0.0",
-  "description": "A sample bot for getting started with Bot Framework",
+  "description": "To help TV watchers learn french",
   "main": "server.js",
   "scripts": {
     "test": ""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fuselabs/echobot.git"
+    "url": "git+https://github.com/vlrchtlt/bliblablobot.git"
   },
   "keywords": [
     "botframework"
   ],
-  "author": "Fuse Labs",
+  "author": "vlrchtlt",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fuselabs/echobot/issues"
+    "url": "https://github.com/vlrchtlt/bliblablobot/issues"
   },
-  "homepage": "https://github.com/fuselabs/echobot#readme",
+  "homepage": "https://github.com/vlrchtlt/bliblablobot#readme",
   "dependencies": {
     "botbuilder": "^0.6.5",
+    "express": "^4.10.2",
     "restify": "^4.0.4"
   }
 }
