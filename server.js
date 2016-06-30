@@ -12,7 +12,7 @@ var bot = new builder.BotConnectorBot(botConnectorOptions);
 bot.add('/', function (session) {
 
     //respond with user's message
-    session.send(session.message.text);
+    session.send( 'Hi, my name is BliBlaBlo and I am here to heslp you learn french \n Let me know if you need a replay, transcription or translation \n Have fun ;-)' + session.message.text);
 });
 
 // Setup Restify Server
