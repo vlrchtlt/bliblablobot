@@ -40,7 +40,7 @@ bot.add('/profile', [
         session.userData.name = results.response;
         builder.Prompts.text(session, 'What is your native language?');
     },
-        function (session, results) {
+    function (session, results) {
         session.userData.nativelanguage = results.response;
         session.endDialog();
     }
