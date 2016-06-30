@@ -22,15 +22,15 @@ bot.add('/', [
         if (!session.userData.firstRun) {
           session.userData.firstRun = true;
           session.beginDialog('/firstRun');
+        }
         if (!session.userData.name) {
           session.beginDialog('/profile');
-        }
         } else {
             next();
         }
     },
     function (session, results) {
-        session.send('Thank you for your message, I am warming up to help you soon ;-)', session.userData.name);
+        session.send('Thank you %s for your message, I am warming up to help you soon ;-)', session.userData.name);
 
     }
 ]);
@@ -38,7 +38,7 @@ bot.add('/', [
 
 bot.add('/firstRun', [
     function (session) {
-      session.send("Hi %s, I am here to help you learn french \n I can replay a sequence, transcribe and/or translate it", session.userData.name);
+      session.send("Hi %s, I am here to help you learn french \n I can replay a sequence, transcribe and/or translate it", session.userData.name || "");
       session.replaceDialog('/');
     },
 ]);
