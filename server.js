@@ -30,6 +30,7 @@ bot.add('/', [
 
     }
 ]);
+
 bot.add('/profile', [
     function (session) {
         builder.Prompts.text(session, 'Hi, I am here to help you learn french \n Let me know if you need any \n replay, transcription or translation \n What is your name?');
@@ -41,9 +42,6 @@ bot.add('/profile', [
         function (session, results) {
         session.userData.nativelanguage = results.response;
         session.endDialog();
-    }
-
-
     }
 ]);
 
