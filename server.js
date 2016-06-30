@@ -19,12 +19,12 @@ var bot = new builder.BotConnectorBot(botConnectorOptions);
 // Make it slightly more intelligent
 bot.add('/', [
     function (session, args, next) {
-        if (!session.userData.name) {
-            session.beginDialog('/profile');
-        }
         if (!session.userData.firstRun) {
-        session.userData.firstRun = true;
-        session.beginDialog('/firstRun');
+          session.userData.firstRun = true;
+          session.beginDialog('/firstRun');
+        if (!session.userData.name) {
+          session.beginDialog('/profile');
+        }
         } else {
             next();
         }
