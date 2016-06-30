@@ -26,14 +26,14 @@ bot.add('/', [
         }
     },
     function (session, results) {
-        session.send('Hello %s! Let me know if you need any help with replay, transcription or translation', session.userData.name);
+        session.send('Hello %s! any help ?', session.userData.name);
 
     }
 ]);
 
 bot.add('/profile', [
     function (session) {
-        builder.Prompts.text(session, 'Hi, I am here to help you learn french \n Let me know if you need any \n replay, transcription or translation \n What is your name?');
+        builder.Prompts.text(session, 'Hi, I am here to help you learn french \n What is your name?');
     },
     function (session, results) {
         session.userData.name = results.response;
