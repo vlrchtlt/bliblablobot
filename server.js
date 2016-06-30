@@ -9,36 +9,11 @@ var botConnectorOptions = {
 
 // Create bot
 var bot = new builder.BotConnectorBot(botConnectorOptions);
+bot.add('/', function (session) {
 
-
-// Install First Run middleware and dialog
-bot.use(function (session, next) {
-    if (!session.userData.firstRun) {
-        session.userData.firstRun = true;
-        session.beginDialog('/firstRun');
-    } else {
-        next();
-    }
+    //respond with user's message
+    session.send( 'Hi, my name is BliBlaBlo\n I am here to help you learn french \n Let me know if you need any \n replay, transcription or translation \n Have fun ;-) \n' + session.message.text);
 });
-
-bot.add('/firstRun', [
-    function (session) {
-        session.send( 'Hi, my name is BliBlaBlo\n I am here to help you learn french \n Let me know if you need any \n replay, transcription or translation \n Have fun ;-) \n');
-        builder.Prompts.text(session, "Hello... What's your mother tong?");
-    },
-    function (session, results) {
-        // We'll save the prompts result and return control to main through
-        // a call to replaceDialog(). We need to use replaceDialog() because
-        // we intercepted the original call to main and we want to remove the
-        // /firstRun dialog from the callstack. If we called endDialog() here
-        // the conversation would end since the /firstRun dialog is the only
-        // dialog on the stack.
-        session.userData.mothertong = results.response;
-        session.replaceDialog('/');
-    }
-]);
-
-
 
 // Setup Restify Server
 var server = restify.createServer();
