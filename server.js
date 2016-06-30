@@ -19,10 +19,6 @@ var bot = new builder.BotConnectorBot(botConnectorOptions);
 // Make it slightly more intelligent
 bot.add('/', [
     function (session, args, next) {
-        if (!session.userData.firstRun) {
-          session.userData.firstRun = true;
-          session.beginDialog('/firstRun');
-        }
         if (!session.userData.name) {
           session.beginDialog('/profile');
         } else {
@@ -30,22 +26,15 @@ bot.add('/', [
         }
     },
     function (session, results) {
-        session.send('Thank you %s for your message, I am warming up to help you soon ;-)', session.userData.name || "");
+        session.send('Thank you %s for your message. I am warming up to help you soon ;-)', session.userData.name || "");
 
     }
 ]);
 
-
-bot.add('/firstRun', [
-    function (session) {
-      session.send("Hi %s, I am here to help you learn french \n I can replay a sequence, transcribe and/or translate it", session.userData.name || "");
-      session.endDialog();
-    }
-]);
 
 bot.add('/profile', [
     function (session) {
-        builder.Prompts.text(session, 'Hi, What is your name?');
+        builder.Prompts.text(session, 'Hi, I am here to help you learn french. What is your name?');
     },
     function (session, results) {
         session.userData.name = results.response;
