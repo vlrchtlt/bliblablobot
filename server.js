@@ -39,6 +39,7 @@ bot.add('/', [
 bot.add('/firstRun', [
     function (session) {
       session.send("Hi %s, I am here to help you learn french \n I can replay a sequence, transcribe and/or translate it", session.userData.name || "there ");
+      session.userData.firstRun = true;
       session.endDialog();
     },
 ]);
