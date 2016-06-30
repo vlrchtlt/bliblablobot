@@ -26,7 +26,7 @@ bot.add('/', [
         }
     },
     function (session, results) {
-        session.send('Hello %s!', session.userData.name);
+        session.send('Hello %s! Let me know if you need any help with replay, transcription or translation', session.userData.name);
 
     }
 ]);
