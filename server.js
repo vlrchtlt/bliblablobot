@@ -32,8 +32,7 @@ bot.add('/', [
 ]);
 bot.add('/profile', [
     function (session) {
-        session.send( 'Hi, my name is BliBlaBlo\n I am here to help you learn french \n Let me know if you need any \n replay, transcription or translation \n Have fun ;-) \n');
-        builder.Prompts.text(session, 'What is your name?');
+        builder.Prompts.text(session, 'Hi, my name is BliBlaBlo\n I am here to help you learn french \n Let me know if you need any \n replay, transcription or translation \n \n What is your name?');
     },
     function (session, results) {
         session.userData.name = results.response;
