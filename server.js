@@ -21,19 +21,31 @@ bot.add('/', [
     function (session, args, next) {
         if (!session.userData.name) {
             session.beginDialog('/profile');
+        }
+        if (!session.userData.firstRun) {
+        session.userData.firstRun = true;
+        session.beginDialog('/firstRun');
         } else {
             next();
         }
     },
     function (session, results) {
-        session.send('Hello %s! any help ?', session.userData.name);
+        session.send('Thank you for your message, I am warming up to help you soon ;-)', session.userData.name);
 
     }
 ]);
 
+
+bot.add('/firstRun', [
+    function (session) {
+      session.send("Hi %s, I am here to help you learn french \n I can replay a sequence, transcribe and/or translate it", session.userData.name);
+      session.replaceDialog('/');
+    },
+]);
+
 bot.add('/profile', [
     function (session) {
-        builder.Prompts.text(session, 'Hi, I am here to help you learn french \n What is your name?');
+        builder.Prompts.text(session, 'Hi, What is your name?');
     },
     function (session, results) {
         session.userData.name = results.response;
